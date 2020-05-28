@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import "./index.scss";
-import { statements } from '@babel/template';
-// import {goTo} from "../../helper/routing";
+import {goTo} from "../../helper/routing";
 
 class Blog extends Component{
 
@@ -14,18 +13,9 @@ class Blog extends Component{
         list: this.props.notesListData
     }
 
-  
-    goTo = (pathname, search) => {
-        let {history} = this.props;
-        history.push({
-          pathname,
-          search
-        })
-    }
     render(){
 
       
-
         let comments = "No comments yet, be first to post";
         return (
             <div>
@@ -36,7 +26,7 @@ class Blog extends Component{
                 this.state.list && this.state.list.map((element) => {
                         
                     return ( 
-                       <section onClick={() => this.goTo("/blogText",element.id)} className="blogPart">
+                       <section onClick={() => goTo("/blogText",this.props, element.id)} className="blogPart">
                       
                        <h1>{element.title}</h1>
                        {!element.comment?

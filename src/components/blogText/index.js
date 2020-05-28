@@ -2,17 +2,23 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import "./index.scss";
 import { statements } from '@babel/template';
+import {goTo} from "../../helper/routing";
 
 class BlogText extends Component{
 
     // state= {
     //     list: this.props.notesListData
     // }
+
+    constructor(props){
+        super(props);
+    }
      
     render(){
         return (
             <div>
-                      Ok you noob. Do the staff
+                <button onClick={() => goTo("/",this.props)}>Back To</button>
+                     Ok you noob. Do the staff
             </div>
       );    
     }

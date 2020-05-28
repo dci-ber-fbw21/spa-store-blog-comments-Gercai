@@ -1,5 +1,5 @@
- export const goTo = (pathname, search) => {
-    let {history} = this.props;
+export const goTo = (pathname,{history}, search) => {
+
     history.push({
       pathname,
       search
