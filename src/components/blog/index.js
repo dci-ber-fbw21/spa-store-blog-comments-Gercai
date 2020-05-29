@@ -5,17 +5,12 @@ import {goTo} from "../../helper/routing";
 
 class Blog extends Component{
 
-    constructor(props){
-        super(props);
-    }
-
     state= {
         list: this.props.notesListData
     }
 
     render(){
 
-      
         let comments = "No comments yet, be first to post";
         return (
             <div>
@@ -26,7 +21,7 @@ class Blog extends Component{
                 this.state.list && this.state.list.map((element) => {
                         
                     return ( 
-                       <section onClick={() => goTo("/blogText",this.props, element.id)} className="blogPart">
+                       <section onClick={() => goTo("/blogPost",this.props, element.id)} className="blogPart">
                       
                        <h1>{element.title}</h1>
                        {!element.comment?
@@ -45,13 +40,10 @@ class Blog extends Component{
  
 }
 
-
-const mapStateToProps = (state, componentProps) =>{
+const mapStateToProps = (state) =>{
     state.data = [...state.data] 
     return {
-        notesListData: state.data.map((element) =>{
-            return element
-        })
+        notesListData: state.data
     }
 }
 

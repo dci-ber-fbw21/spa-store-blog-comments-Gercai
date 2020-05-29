@@ -1,5 +1,13 @@
 .blogPart{
     border: solid black 1px;
     padding: 10px;
+
+    &:hover{
+        background-color: #eeeeee; 
+    }
     
+}
+
+section{
+    margin: 10px;
 }

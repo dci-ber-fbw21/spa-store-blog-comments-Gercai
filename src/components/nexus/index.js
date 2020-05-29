@@ -1,6 +1,6 @@
 import React from "react";
 import Blog from "../blog";
-import BlogText from "../blogText";
+import BlogPost from "../blogPost";
 
 import {
   BrowserRouter as Router,
@@ -36,7 +36,7 @@ return (
       <Router>
    
    <Route path="/blog" component={Blog}></Route>
-   <Route path="/blogText" component={BlogText}></Route>
+   <Route path="/blogPost" component={BlogPost}></Route>
    <Route exact path="/" component={Blog}></Route>
 
      </Router>
