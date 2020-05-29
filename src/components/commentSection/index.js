@@ -14,12 +14,33 @@ class CommentSection extends Component{
     componentDidMount(){
         // Add comments from the right array. 
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+    }
+
+    handleClear = event =>  {
+        document.querySelector("textarea").value = "";
+    }
+
+    processData = () => {
+       let comment = document.querySelector("textarea").value;
+       let date = new Date();
+       let commentPackage = {text:comment,
+                             date:date.toDateString()};
+       this.sendPackage(commentPackage);
+    };
+
+    sendPackage = (commentPackage) => {
+
+        console.log(commentPackage);
+    }
      
     render(){
         console.log(this.state.blogPost);
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <fieldset className="commentField">
                    
                    <div className="comment">
@@ -27,8 +48,8 @@ class CommentSection extends Component{
                     <textarea id="textarea" rows="5"></textarea>
                   </div>
                   <div className="commentButtons">
-                    <button name="clear">Clear</button>
-                    <button name="addComment">Add Comment</button>
+                    <button name="clear" onClick={() => this.handleClear()}>Clear</button>
+                    <button name="addComment" onClick={() => this.processData()}>Add Comment</button>
                   </div>
                     </fieldset>
                 </form>
