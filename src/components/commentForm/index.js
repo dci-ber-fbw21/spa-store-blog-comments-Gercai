@@ -15,7 +15,7 @@ class CommentForm extends Component{
     componentDidMount(){
         // Add comments from the right array. 
       
-
+        
     }
 
 
@@ -41,6 +41,8 @@ class CommentForm extends Component{
     };
 
     sendPackage = (commentPackage) => {
+        console.log(this.props.blogID);
+        console.log("here");
         this.props.addComment(this.state.commentInput,this.props.blogID);
     }
      

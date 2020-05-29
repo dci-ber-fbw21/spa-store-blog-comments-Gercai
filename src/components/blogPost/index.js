@@ -22,6 +22,7 @@ class BlogPost extends Component{
         })
     }
 
+
     render(){
         return (
             <div>

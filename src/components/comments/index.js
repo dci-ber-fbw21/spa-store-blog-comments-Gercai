@@ -9,21 +9,42 @@ class CommentSection extends Component{
         this.state = {
             list: this.props.notesListData,
             blogPost: [],
-            commentInput: ""
+            commentInput: "",
+            comments: [],
+            count: 1,
         }
+
     }
 
     componentDidMount(){
-        // Add comments from the right array. 
+    }   
+
+    componentDidUpdate(){
+        // console.log(this.props.blogID);
+        // let count = blogPost.comments.length +1;
+        let blogPost =  this.state.list.find(element => element.id === this.props.blogID)
+        let count = this.state.count;
+        console.log(blogPost.comments.length);
+        console.log(this.state.count);
+
+        if(blogPost.comments.length===this.state.count){
+            this.setState({
+                comments: blogPost.comments,
+                count: count +1
+            })
+        }
+
+        // console.log(count);
     }
      
     render(){
         return (
             <div> 
                 <section className="comments">
-                    comments Below
-                    {this.state.notesListData}
-
+                    <h2>comments Below</h2>
+                        {
+                            this.state.comments.map((comment) =><p>{comment}</p>)
+                        }
                 </section>
             </div>
       );    
@@ -37,14 +58,14 @@ class CommentSection extends Component{
 //     }
 // }   
 
-// const mapStateToProps = (state, componentProps) => {
-//     // return {
-//     //   // counter: state.counter
-//     // }
-//     // console.log(state);
-//   }
+const mapStateToProps = (state) =>{
+    state.data = [...state.data] 
+    return {
+        notesListData: state.data
+    }
+}   
 
 
 export default connect(
-    // mapStateToProps,
+    mapStateToProps,
 )(CommentSection)
