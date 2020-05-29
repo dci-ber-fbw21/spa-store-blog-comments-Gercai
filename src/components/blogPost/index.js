@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import CommentSection from "../commentSection";
 import "./index.scss";
 import {goTo} from "../../helper/routing";
 class BlogPost extends Component{
@@ -10,6 +11,7 @@ class BlogPost extends Component{
             list: this.props.notesListData,
             blogPost: []
         }
+        // this.processJSON = this.processJSON.bind(this);
     }
 
     componentDidMount(){
@@ -19,16 +21,30 @@ class BlogPost extends Component{
             blogPost
         })
     }
+
+    // processJSON(json){
+    //         let object = JSON.parse(json);
+    //         let output =  {}
+    //         output[0] = object[0];
+    //         return JSON.stringify(output);
+    // }
      
     render(){
         console.log(this.state.blogPost);
         return (
             <div>
                 <button onClick={() => goTo("/",this.props)}>Back To</button>             
-                    <section>
-                        <h2>{this.state.blogPost.id}</h2>
+                    <section className="blogPost">
+                        <h2>{this.state.blogPost.title}</h2>
+                    {/* Might look up for sanitizer like purify */}
+                        <div dangerouslySetInnerHTML={{
+                       __html: this.state.blogPost.htmlText
+                    }} />
                     </section>
-                   {  console.log(this.props)}
+                    <section className="commentSection">
+                        <CommentSection/>
+                    </section>
+                   {console.log(this.props)}
             </div>
       );    
     }
