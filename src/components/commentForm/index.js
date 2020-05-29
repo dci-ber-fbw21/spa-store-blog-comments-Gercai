@@ -1,26 +1,35 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+
+
 import "./index.scss";
-class CommentSection extends Component{
+class CommentForm extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            list: this.props.notesListData,
-            blogPost: []
+            commentInput: "",
         }
     }
 
     componentDidMount(){
         // Add comments from the right array. 
+      
+
     }
 
-    handleSubmit = event => {
+
+    handleForm = event => {
         event.preventDefault();
+    }
+    handleSubmit = event => {
+    
+    
     }
 
     handleClear = event =>  {
         document.querySelector("textarea").value = "";
+       
     }
 
     processData = () => {
@@ -32,20 +41,27 @@ class CommentSection extends Component{
     };
 
     sendPackage = (commentPackage) => {
-
-        console.log(commentPackage);
+        this.props.addComment(this.state.commentInput,this.props.blogID);
     }
      
     render(){
-        console.log(this.state.blogPost);
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleForm}>
                     <fieldset className="commentField">
                    
                    <div className="comment">
                     <label for="textarea">Leave a Comment</label>
-                    <textarea id="textarea" rows="5"></textarea>
+                    <textarea id="textarea" rows="5"
+                    
+                    onChange={
+                        (e)=>{
+                        this.setState(
+                            { commentInput: e.target.value}
+                            )
+                        }
+                    }
+                    ></textarea>
                   </div>
                   <div className="commentButtons">
                     <button name="clear" onClick={() => this.handleClear()}>Clear</button>
@@ -58,15 +74,22 @@ class CommentSection extends Component{
     }
 }
 
-// const mapStateToProps = (state) =>{
-//     state.data = [...state.data] 
-//     return {
-//         notesListData: state.data
-//     }
-// }   
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addComment: (commentText,blogId) => {
+            
+            const action ={
+                type: "ADD_COMMENT",
+                payload: { 
+                comment: commentText,
+                blogId
+            }
+        }
+        dispatch(action)
+        }
+  }};
 
-// export default connect(
-//     mapStateToProps,
-// )(BlogPost)
-
-export default CommentSection;
+export default connect(
+    null,
+    mapDispatchToProps,
+)(CommentForm)

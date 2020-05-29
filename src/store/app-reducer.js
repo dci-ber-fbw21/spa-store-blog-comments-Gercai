@@ -1,6 +1,5 @@
 import data from "../data/data.json";
 
-console.log(data);
 const initialState = {
     data: data
 }
@@ -8,10 +7,18 @@ const initialState = {
 function appReducer(state = initialState, action){
 
     switch (action.type) {
-        case "ADDContent":
-            return{
+        case "ADD_COMMENT":
+            
+                let foundIndex = data.findIndex(element => element.id === action.payload.blogId);
+
+                const newState = {...state};
+                newState.data[foundIndex].comments.push(action.payload.comment);  
+
+                return{
                 ...state,
-                data:[...state.data, action.payload.data],
+                    newState
+                // data: state.data.map((data,i) => i === foundIndex ? data.comments.push("ok"):data)
+                // data: state.data.map((data,i) => i === foundIndex ? {...data, comments: action.payload.comment}:data)
             }
             default: 
              return state;

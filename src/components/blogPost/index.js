@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import CommentSection from "../commentSection";
+import CommentForm from "../commentForm";
+import Comments from "../comments";
 import "./index.scss";
 import {goTo} from "../../helper/routing";
 class BlogPost extends Component{
@@ -15,14 +16,13 @@ class BlogPost extends Component{
 
     componentDidMount(){
         let location = this.props.location;
-        let blogPost =  this.state.list.find(element => element.id == location.search.substring(1));
+        let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
         this.setState({
             blogPost
         })
     }
 
     render(){
-        console.log(this.state.blogPost);
         return (
             <div>
                 <button onClick={() => goTo("/",this.props)}>Back To</button>             
@@ -31,10 +31,11 @@ class BlogPost extends Component{
                     {/* Might look up for sanitizer like purify */}
                         <div dangerouslySetInnerHTML={{
                        __html: this.state.blogPost.htmlText
-                    }} />
+                    }} /> 
                     </section>
                     <section className="commentSection">
-                        <CommentSection/>
+                        <CommentForm blogID={this.state.blogPost.id}/>
+                        <Comments blogID={this.state.blogPost.id}/>
                     </section>
             </div>
       );    
