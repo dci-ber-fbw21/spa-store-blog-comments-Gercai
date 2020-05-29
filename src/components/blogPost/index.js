@@ -11,7 +11,6 @@ class BlogPost extends Component{
             list: this.props.notesListData,
             blogPost: []
         }
-        // this.processJSON = this.processJSON.bind(this);
     }
 
     componentDidMount(){
@@ -22,13 +21,6 @@ class BlogPost extends Component{
         })
     }
 
-    // processJSON(json){
-    //         let object = JSON.parse(json);
-    //         let output =  {}
-    //         output[0] = object[0];
-    //         return JSON.stringify(output);
-    // }
-     
     render(){
         console.log(this.state.blogPost);
         return (
@@ -44,7 +36,6 @@ class BlogPost extends Component{
                     <section className="commentSection">
                         <CommentSection/>
                     </section>
-                   {console.log(this.props)}
             </div>
       );    
     }

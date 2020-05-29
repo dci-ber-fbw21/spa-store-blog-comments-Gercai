@@ -19,8 +19,19 @@ class CommentSection extends Component{
         console.log(this.state.blogPost);
         return (
             <div>
-        
-            Put you comments in here
+                <form>
+                    <fieldset className="commentField">
+                   
+                   <div className="comment">
+                    <label for="textarea">Leave a Comment</label>
+                    <textarea id="textarea" rows="5"></textarea>
+                  </div>
+                  <div className="commentButtons">
+                    <button name="clear">Clear</button>
+                    <button name="addComment">Add Comment</button>
+                  </div>
+                    </fieldset>
+                </form>
             </div>
       );    
     }
