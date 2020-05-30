@@ -17,16 +17,12 @@ class CommentSection extends Component{
 
     componentDidMount(){
 
-        console.log(this.props)
-        console.log("CommentSection is mounting...");
         this.setState({
             commentMount: true,
         })
     }   
 
     componentDidUpdate(){
-        console.log(this.props);
-        console.log("Comments are Updating");
         let blogPost =  this.state.list.find(element => element.id === this.props.blogId)
         console.log(blogPost);
 
@@ -38,22 +34,36 @@ class CommentSection extends Component{
             })
         }
 }
-     
+
+
+    deleteComment = index =>{
+
+        console.log("here i am ");
+        this.sendPackage(this.props.blogId,index);
+
+    }
+
+    sendPackage = (blogId,indexOfComment) =>{
+
+        console.log(blogId);
+        console.log(indexOfComment);
+
+        this.props.deleteComment(indexOfComment,blogId);
+
+    }
+
     render(){
         return (
             <div> 
                 <section className="comments">
                     <h2>comments Below</h2>
                         {
-                            this.state.comments.map((comment) =>
-                            
+                            this.state.comments.reverse().map((comment,index) =>
                             <article>
-                            
-                            <p>{comment}</p>
-                           
+                            <p>{comment.date}</p>
+                            <p>{comment.text}</p>
+                            <button name="delete" onClick={() => this.deleteComment(index)}>Delete</button>  
                             </article>
-                            
-                            
                             )
                         }
                 </section>
@@ -63,16 +73,33 @@ class CommentSection extends Component{
 }
 
 
+
 const mapStateToProps = (state, ownProps) =>{
     const {blogId} = ownProps; 
     return {
         notesListData: state.data,
-        // notesListData: state.blogPost.data,
         blogId
     }
 }   
 
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteComment: (indexOfComment,blogId) => {
+            
+            const action ={
+                type: "DELETE_COMMENT",
+                payload: { 
+                indexOfComment,
+                blogId
+            }
+        }
+        dispatch(action)
+        }
+  }};
+
+
 export default connect(
     mapStateToProps,
+    mapDispatchToProps
 )(CommentSection)

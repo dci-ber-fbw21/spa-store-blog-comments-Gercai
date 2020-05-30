@@ -3,8 +3,30 @@
     article{
         border: solid black 1px;
         margin: 5px;
+        display: flex;
+        flex-direction: column;
+
+        p{
+            padding: 5px;
+        }
+
+        :nth-child(2n+2){
+            align-self: flex-start;
+        }
+        
+
+        :nth-child(2n+1){
+        align-self: flex-end;
+        }
     
-    
+        button{
+            border: none;
+            background-color: white;
+            :hover{
+                background-color: #eeeeee;
+            }
+
+        }
 
     }
 }

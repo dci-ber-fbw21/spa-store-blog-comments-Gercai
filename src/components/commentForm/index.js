@@ -33,10 +33,11 @@ class CommentForm extends Component{
        let commentPackage = {text:comment,
                              date:date.toDateString()};
        this.sendPackage(commentPackage);
+       document.querySelector("textarea").value = "";
     };
 
     sendPackage = (commentPackage) => {
-        this.props.addComment(this.state.commentInput,this.props.blogId);
+        this.props.addComment(commentPackage,this.props.blogId);
     }
      
     render(){
@@ -70,12 +71,12 @@ class CommentForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addComment: (commentText,blogId) => {
+        addComment: (commentPackage,blogId) => {
             
             const action ={
                 type: "ADD_COMMENT",
                 payload: { 
-                comment: commentText,
+                commentPackage: commentPackage,
                 blogId
             }
         }
