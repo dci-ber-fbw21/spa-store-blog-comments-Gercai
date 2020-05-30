@@ -8,29 +8,20 @@ class CommentSection extends Component{
         super(props);
         this.state = {
             list: this.props.notesListData,
+            commentMount: false,
             blogPost: [],
             commentInput: "",
             comments: [],
-            count: 1,
         }
     }
 
     componentDidMount(){
-        
+
         console.log(this.props)
         console.log("CommentSection is mounting...");
-       
-       
-       
-        // console.log("here");
-        // console.log(this.props);
-        // console.log(this.props.location)
-        
-        // this.state({
-        // })
-
-
-        
+        this.setState({
+            commentMount: true,
+        })
     }   
 
     componentDidUpdate(){
@@ -39,25 +30,14 @@ class CommentSection extends Component{
         let blogPost =  this.state.list.find(element => element.id === this.props.blogId)
         console.log(blogPost);
 
-
-
-        // console.log(this.state.list);
-        // let count = blogPost.comments.length +1;
-        // let count = this.state.count;
-
-        // console.log("overhere");
-        // console.log(blogPost.comments.length);
-        // console.log(this.state.count);
-
-        // if(blogPost.comments.length===this.state.count){
-        //     this.setState({
-        //         comments: blogPost.comments,
-        //         count: count +1
-        //     })
-        // }
-
-        // console.log(count);
-    }
+        if(this.state.commentMount === true)
+        {
+        this.setState({
+                comments: blogPost.comments,
+                commentMount: false
+            })
+        }
+}
      
     render(){
         return (
@@ -65,7 +45,16 @@ class CommentSection extends Component{
                 <section className="comments">
                     <h2>comments Below</h2>
                         {
-                            this.state.comments.map((comment) =><p>{comment}</p>)
+                            this.state.comments.map((comment) =>
+                            
+                            <article>
+                            
+                            <p>{comment}</p>
+                           
+                            </article>
+                            
+                            
+                            )
                         }
                 </section>
             </div>
@@ -73,12 +62,6 @@ class CommentSection extends Component{
     } 
 }
 
-// const mapStateToProps = (state) =>{
-  
-//     return {
-//         notesListData: state.data
-//     }
-// }   
 
 const mapStateToProps = (state, ownProps) =>{
     const {blogId} = ownProps; 
