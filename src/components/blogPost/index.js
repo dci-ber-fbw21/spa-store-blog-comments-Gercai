@@ -10,18 +10,20 @@ class BlogPost extends Component{
         super(props);
         this.state = {
             list: this.props.notesListData,
+            blogId: this.props.blogId,
             blogPost: []
         }
     }
 
     componentDidMount(){
+        console.log(this.props);
+        console.log("props");
         let location = this.props.location;
         let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
         this.setState({
             blogPost
         })
     }
-
 
     render(){
         return (
@@ -35,18 +37,22 @@ class BlogPost extends Component{
                     }} /> 
                     </section>
                     <section className="commentSection">
-                        <CommentForm blogID={this.state.blogPost.id}/>
-                        <Comments blogID={this.state.blogPost.id}/>
+                        <CommentForm blogId={this.state.blogPost.id}/>
+                        <Comments blogId={this.state.blogPost.id}/>
                     </section>
             </div>
       );    
     }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state,ownProps) =>{
     state.data = [...state.data] 
+console.log(ownProps);
+console.log("blogpost");
     return {
-        notesListData: state.data
+        notesListData: state.data,
+        // notesListData: state.blogPost.data,
+        blogId: state.data
     }
 }   
 

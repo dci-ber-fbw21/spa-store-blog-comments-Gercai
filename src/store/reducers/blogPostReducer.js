@@ -1,7 +1,8 @@
-import data from "../data/data.json";
+import data from "../../data/data.json";
 
 const initialState = {
-    data: data
+    data: data,
+    blogId: 0
 }
 
 function appReducer(state = initialState, action){
@@ -13,16 +14,17 @@ function appReducer(state = initialState, action){
 
                 const newState = {...state};
                 newState.data[foundIndex].comments.push(action.payload.comment);  
-
-                return{
+                newState.blogId = action.payload.blogId;
+          
+               return{
                 ...state,
-                    newState
-                // data: state.data.map((data,i) => i === foundIndex ? data.comments.push("ok"):data)
-                // data: state.data.map((data,i) => i === foundIndex ? {...data, comments: action.payload.comment}:data)
+                newState
             }
+        case "DELETE_COMMENT":
+        case "BLOG_COMMENT":
+            break;
             default: 
-             return state;
+            return state;
     }
 }
-
 export default appReducer;

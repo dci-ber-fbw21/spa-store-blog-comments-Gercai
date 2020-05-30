@@ -14,8 +14,6 @@ class CommentForm extends Component{
 
     componentDidMount(){
         // Add comments from the right array. 
-      
-        
     }
 
 
@@ -23,13 +21,10 @@ class CommentForm extends Component{
         event.preventDefault();
     }
     handleSubmit = event => {
-    
-    
     }
 
     handleClear = event =>  {
         document.querySelector("textarea").value = "";
-       
     }
 
     processData = () => {
@@ -41,9 +36,7 @@ class CommentForm extends Component{
     };
 
     sendPackage = (commentPackage) => {
-        console.log(this.props.blogID);
-        console.log("here");
-        this.props.addComment(this.state.commentInput,this.props.blogID);
+        this.props.addComment(this.state.commentInput,this.props.blogId);
     }
      
     render(){
@@ -51,7 +44,6 @@ class CommentForm extends Component{
             <div>
                 <form onSubmit={this.handleForm}>
                     <fieldset className="commentField">
-                   
                    <div className="comment">
                     <label for="textarea">Leave a Comment</label>
                     <textarea id="textarea" rows="5"

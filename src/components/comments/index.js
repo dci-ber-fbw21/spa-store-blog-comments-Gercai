@@ -13,26 +13,48 @@ class CommentSection extends Component{
             comments: [],
             count: 1,
         }
-
     }
 
     componentDidMount(){
+        
+        console.log(this.props)
+        console.log("CommentSection is mounting...");
+       
+       
+       
+        // console.log("here");
+        // console.log(this.props);
+        // console.log(this.props.location)
+        
+        // this.state({
+        // })
+
+
+        
     }   
 
     componentDidUpdate(){
-        // console.log(this.props.blogID);
-        // let count = blogPost.comments.length +1;
-        let blogPost =  this.state.list.find(element => element.id === this.props.blogID)
-        let count = this.state.count;
-        console.log(blogPost.comments.length);
-        console.log(this.state.count);
+        console.log(this.props);
+        console.log("Comments are Updating");
+        let blogPost =  this.state.list.find(element => element.id === this.props.blogId)
+        console.log(blogPost);
 
-        if(blogPost.comments.length===this.state.count){
-            this.setState({
-                comments: blogPost.comments,
-                count: count +1
-            })
-        }
+
+
+        // console.log(this.state.list);
+        // let count = blogPost.comments.length +1;
+        // let count = this.state.count;
+
+        // console.log("overhere");
+        // console.log(blogPost.comments.length);
+        // console.log(this.state.count);
+
+        // if(blogPost.comments.length===this.state.count){
+        //     this.setState({
+        //         comments: blogPost.comments,
+        //         count: count +1
+        //     })
+        // }
 
         // console.log(count);
     }
@@ -48,7 +70,7 @@ class CommentSection extends Component{
                 </section>
             </div>
       );    
-    }
+    } 
 }
 
 // const mapStateToProps = (state) =>{
@@ -58,10 +80,12 @@ class CommentSection extends Component{
 //     }
 // }   
 
-const mapStateToProps = (state) =>{
-    state.data = [...state.data] 
+const mapStateToProps = (state, ownProps) =>{
+    const {blogId} = ownProps; 
     return {
-        notesListData: state.data
+        notesListData: state.data,
+        // notesListData: state.blogPost.data,
+        blogId
     }
 }   
 

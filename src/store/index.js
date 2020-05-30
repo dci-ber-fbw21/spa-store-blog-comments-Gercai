@@ -1,8 +1,10 @@
 import {createStore} from "redux";
-import appReducer from "./app-reducer";
+import RootReducer from "./reducers";
+import blogPost from "./reducers/blogPostReducer";
+
 
 const store = createStore(
-    appReducer,
+    blogPost,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

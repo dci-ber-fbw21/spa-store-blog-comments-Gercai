@@ -26,8 +26,6 @@ GoTo(pathname){
 
 render(){
 
-  let {pathname} = this.props.location;
-  console.log(pathname);
 return (
 
   <article>
