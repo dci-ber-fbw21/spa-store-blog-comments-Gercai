@@ -11,7 +11,8 @@ class BlogPost extends Component{
         this.state = {
             list: this.props.notesListData,
             blogId: this.props.blogId,
-            blogPost: []
+            blogPost: [],
+            toggle: true
         }
     }
 
@@ -25,11 +26,24 @@ class BlogPost extends Component{
         })
     }
 
+    toggleMenu = () => {
+       let checkToggle = this.state.toggle?false:true;
+       this.setState({
+            toggle:checkToggle
+        })
+    }
+
     render(){
         return (
-            <div>
-                <button onClick={() => goTo("/",this.props)}>Back To</button>             
-                    <section className="blogPost">
+            <div className="postContainer">
+              
+              <section className={`menu ${this.state.toggle?"toggle":"hide"}`}>
+                <button onClick={() => goTo("/",this.props)}>Last</button>             
+                <button onClick={() => goTo("/",this.props)}>Index</button>             
+                <button onClick={() => goTo("/",this.props)}>Next</button>             
+              </section>       
+                    
+                    <section onClick={() => this.toggleMenu()}className="blogPost">
                         <h2>{this.state.blogPost.title}</h2>
                     {/* Might look up for sanitizer like purify */}
                         <div dangerouslySetInnerHTML={{

@@ -8,7 +8,7 @@ import Nexus from "./components/nexus";
 
 function App() {
   return (
-    <div className="App"> 
+    <div className="container"> 
     <Router>  
     <Nexus/>
     </Router>

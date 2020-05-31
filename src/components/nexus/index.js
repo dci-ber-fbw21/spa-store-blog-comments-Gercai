@@ -1,6 +1,7 @@
 import React from "react";
 import Blog from "../blog";
 import BlogPost from "../blogPost";
+import Header from "../header";
 
 import {
   BrowserRouter as Router,
@@ -10,7 +11,7 @@ import {
 
 import "./index.scss";
 
-class Hub extends React.Component{
+class Nexus extends React.Component{
 
 componentDidMount(){
 
@@ -29,19 +30,17 @@ render(){
 return (
 
   <article>
-    <p>Image_Placeholder</p>
     <section className="container">
-      <Router>
-   
-   <Route path="/blog" component={Blog}></Route>
-   <Route path="/blogPost" component={BlogPost}></Route>
-   <Route exact path="/" component={Blog}></Route>
-
-     </Router>
+   <Header></Header>
+   <Router>   
+      <Route path="/blog" component={Blog}></Route>
+      <Route path="/blogPost" component={BlogPost}></Route>
+      <Route exact path="/" component={Blog}></Route>
+    </Router>
     </section>
   </article>
 )}
 
 }
 
-export default withRouter(Hub);
+export default withRouter(Nexus);

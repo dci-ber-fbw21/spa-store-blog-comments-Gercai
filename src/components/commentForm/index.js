@@ -59,8 +59,8 @@ class CommentForm extends Component{
                     ></textarea>
                   </div>
                   <div className="commentButtons">
-                    <button name="clear" onClick={() => this.handleClear()}>Clear</button>
-                    <button name="addComment" onClick={() => this.processData()}>Add Comment</button>
+                    <button className="clear" onClick={() => this.handleClear()}>Clear</button>
+                    <button className="addComment" onClick={() => this.processData()}>Add Comment</button>
                   </div>
                     </fieldset>
                 </form>

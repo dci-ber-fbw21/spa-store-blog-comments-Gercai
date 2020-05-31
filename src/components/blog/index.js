@@ -14,8 +14,8 @@ class Blog extends Component{
         let comments = "No comments yet, be first to post";
         return (
             <div>
+                 <h1>Blog Overview</h1>
                 <article>
-                <h1>Blog Overview</h1>
                     {/* {console.log(this.state.list)} */}
                 {
                 this.state.list && this.state.list.map((element) => {
@@ -30,14 +30,12 @@ class Blog extends Component{
                        }
                        </section>
                         )
-                    
                 })
                 }
                 </article>
             </div>
       );    
     }
- 
 }
 
 const mapStateToProps = (state) =>{

@@ -13,11 +13,26 @@
 }
 
 .commentButtons{
+
+    margin: 0 25%;
     button{
         font-size: 1.2rem;
         margin: 10px;
         padding: 5px;
         border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .clear{
+        border:solid 1px blue;
+        background-color: white;
+        color: blue;
+    }
+
+    .addComment{
+        background-color: blue;
+        color: white;
     }
 }
 }
