@@ -10,7 +10,7 @@ class Blog extends Component{
     }
 
     render(){
-
+ 
         let comments = "No comments yet, be first to post";
         return (
             <div>

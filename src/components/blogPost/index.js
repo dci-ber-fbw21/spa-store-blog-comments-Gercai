@@ -4,8 +4,8 @@ import CommentForm from "../commentForm";
 import Comments from "../comments";
 import "./index.scss";
 import {goTo} from "../../helper/routing";
-import arrow from "../../svg/arrow.svg";
-import Home from "../../svg/home.svg";
+
+import { withRouter } from "react-router-dom";
 
 import {ReactComponent as ArrowSVG} from "../../svg/arrow.svg";
 import {ReactComponent as HomeSVG} from "../../svg/home.svg";
@@ -19,18 +19,32 @@ class BlogPost extends Component{
         this.state = {
             list: this.props.notesListData,
             blogId: this.props.blogId,
+            switchIds: [],
             blogPost: [],
             toggle: true
         }
     }
 
+
     componentDidMount(){
-        console.log(this.props);
-        console.log("props");
+
+
         let location = this.props.location;
         let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
+        let switchId = this.state.list.indexOf(blogPost);
+
+        let before =   switchId > 0? switchId - 1: 0;
+        let after =    switchId < this.state.list.length -1? switchId + 1 : this.state.list.length - 1;
+      
+          
+        let switchIds = [
+            this.state.list[before].id,
+            this.state.list[after].id
+        ];
+
         this.setState({
-            blogPost
+            blogPost,
+            switchIds
         })
     }
 
@@ -41,19 +55,23 @@ class BlogPost extends Component{
         })
     }
 
-    render(){
+    render(){  
+           
+        if(this.state.switchIds.length > 1){
+            console.log(this.state.switchIds[0]);
+            console.log(this.state.switchIds[1]);    
+        } 
+        
+    
         return (
             <div className="postContainer">
-              
               <section className={`menu ${this.state.toggle?"toggle":"hide"}`}>
-                <button onClick={() => goTo("/",this.props)}><ArrowSVG/></button>             
-                <button onClick={() => goTo("/",this.props)}>Index</button>             
-                <button onClick={() => goTo("/",this.props)}>Next</button>             
+                <button onClick={() => goTo("/blogPost", this.props, this.state.switchIds[0])}><ArrowSVG/></button>             
+                <button onClick={() => goTo("/",this.props)}><HomeSVG/></button>             
+                <button onClick={() => goTo("/blogPost",this.props)}><ArrowSVG/></button>             
               </section>       
-                    
                     <section onClick={() => this.toggleMenu()}className="blogPost">
                         <h2>{this.state.blogPost.title}</h2>
-                    {/* Might look up for sanitizer like purify */}
                         <div dangerouslySetInnerHTML={{
                        __html: this.state.blogPost.htmlText
                     }} /> 
@@ -69,15 +87,12 @@ class BlogPost extends Component{
 
 const mapStateToProps = (state,ownProps) =>{
     state.data = [...state.data] 
-console.log(ownProps);
-console.log("blogpost");
     return {
         notesListData: state.data,
-        // notesListData: state.blogPost.data,
-        blogId: state.data
+        // blogId
     }
 }   
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
-)(BlogPost)
+)(BlogPost));

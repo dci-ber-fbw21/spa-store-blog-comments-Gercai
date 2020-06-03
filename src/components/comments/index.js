@@ -76,6 +76,7 @@ class CommentSection extends Component{
 
 const mapStateToProps = (state, ownProps) =>{
     const {blogId} = ownProps; 
+    console.log(blogId + "here");
     return {
         notesListData: state.data,
         blogId
