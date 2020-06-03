@@ -4,3 +4,11 @@ export const goTo = (pathname,{history}, search) => {
       search
     })
 }
+
+
+export const reLoad = (pathname,{history}, search) => {
+  history.replace({
+    pathname,
+    search
+  })
+}

@@ -6,10 +6,12 @@ import Header from "../header";
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
   withRouter,
 } from "react-router-dom";
 
 import "./index.scss";
+import { reLoad } from "../../helper/routing";
 
 class Nexus extends React.Component{
 
@@ -35,6 +37,7 @@ return (
    <Router>   
       <Route path="/blog" component={Blog}></Route>
       <Route path="/blogPost" component={BlogPost}></Route>
+      {/* <Redirect exact from="/blogPost/reload/" to="/blogPost" component={BlogPost} ></Redirect> */}
       <Route exact path="/" component={Blog}></Route>
     </Router>
     </section>

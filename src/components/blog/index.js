@@ -6,11 +6,20 @@ import {goTo} from "../../helper/routing";
 class Blog extends Component{
 
     state= {
-        list: this.props.notesListData
+        list: this.props.notesListData,
+        comments: 0
+    }
+
+componentDidMount(){
+     this.setState({
+            list: this.props.notesListData
+        })
+    }
+    componentDidUpdate(){
+
     }
 
     render(){
- 
         let comments = "No comments yet, be first to post";
         return (
             <div>
@@ -18,15 +27,19 @@ class Blog extends Component{
                 <article>
                     {/* {console.log(this.state.list)} */}
                 {
-                this.state.list && this.state.list.map((element) => {
-                        
+             this.state.list && this.state.list.map((element) => {
                     return ( 
-                       <section onClick={() => goTo("/blogPost",this.props, element.id)} className="blogPart">
+                        <section onClick={() => goTo("/blogPost", this.props, element.id)} className="blogPart">
                       
                        <h1>{element.title}</h1>
-                       {!element.comment?
-                       <p>{comments}</p>: 
-                       <p>We have comments</p>
+                       {element.comments.length>0?
+                       <p>
+                           {element.comments.length>1?
+                            <span>There are {element.comments.length} comments</span>:
+                            <span>There is {element.comments.length} comment</span>
+                           }
+                        </p>: 
+                       <p>{comments}</p>
                        }
                        </section>
                         )

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import CommentForm from "../commentForm";
 import Comments from "../comments";
 import "./index.scss";
-import {goTo} from "../../helper/routing";
+import {goTo, reLoad} from "../../helper/routing";
 
 import { withRouter } from "react-router-dom";
 
@@ -25,9 +25,7 @@ class BlogPost extends Component{
         }
     }
 
-
     componentDidMount(){
-
 
         let location = this.props.location;
         let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
@@ -35,7 +33,6 @@ class BlogPost extends Component{
 
         let before =   switchId > 0? switchId - 1: 0;
         let after =    switchId < this.state.list.length -1? switchId + 1 : this.state.list.length - 1;
-      
           
         let switchIds = [
             this.state.list[before].id,
@@ -47,6 +44,27 @@ class BlogPost extends Component{
             switchIds
         })
     }
+    componentDidUpdate(){
+
+        let location2 = this.props.location;
+        let blogPost2 =  this.state.list.find(element => element.id === location2.search.substring(1));
+        let switchId = this.state.list.indexOf(blogPost2);
+        let before =   switchId > 0? switchId - 1: 0;
+        let after =    switchId < this.state.list.length -1? switchId + 1 : this.state.list.length - 1;
+        let switchIds = [
+            this.state.list[before].id,
+            this.state.list[after].id
+        ];
+
+        let location = this.props.location;
+        let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
+   if(blogPost != this.state.blogPost)
+        this.setState({
+            blogPost,
+            switchIds
+        })
+
+    }
 
     toggleMenu = () => {
        let checkToggle = this.state.toggle?false:true;
@@ -56,19 +74,16 @@ class BlogPost extends Component{
     }
 
     render(){  
+
+        console.log(this.state.blogPost.id + "Comment Update");
            
-        if(this.state.switchIds.length > 1){
-            console.log(this.state.switchIds[0]);
-            console.log(this.state.switchIds[1]);    
-        } 
-        
-    
+
         return (
             <div className="postContainer">
               <section className={`menu ${this.state.toggle?"toggle":"hide"}`}>
-                <button onClick={() => goTo("/blogPost", this.props, this.state.switchIds[0])}><ArrowSVG/></button>             
+                <button onClick={() => reLoad("/blogPost", this.props, this.state.switchIds[0])}><ArrowSVG/></button>             
                 <button onClick={() => goTo("/",this.props)}><HomeSVG/></button>             
-                <button onClick={() => goTo("/blogPost",this.props)}><ArrowSVG/></button>             
+                <button onClick={() => goTo("/blogPost",this.props,this.state.switchIds[1])}><ArrowSVG/></button>             
               </section>       
                     <section onClick={() => this.toggleMenu()}className="blogPost">
                         <h2>{this.state.blogPost.title}</h2>
