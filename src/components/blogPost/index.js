@@ -4,6 +4,14 @@ import CommentForm from "../commentForm";
 import Comments from "../comments";
 import "./index.scss";
 import {goTo} from "../../helper/routing";
+import arrow from "../../svg/arrow.svg";
+import Home from "../../svg/home.svg";
+
+import {ReactComponent as ArrowSVG} from "../../svg/arrow.svg";
+import {ReactComponent as HomeSVG} from "../../svg/home.svg";
+
+
+
 class BlogPost extends Component{
 
     constructor(props){
@@ -38,7 +46,7 @@ class BlogPost extends Component{
             <div className="postContainer">
               
               <section className={`menu ${this.state.toggle?"toggle":"hide"}`}>
-                <button onClick={() => goTo("/",this.props)}>Last</button>             
+                <button onClick={() => goTo("/",this.props)}><ArrowSVG/></button>             
                 <button onClick={() => goTo("/",this.props)}>Index</button>             
                 <button onClick={() => goTo("/",this.props)}>Next</button>             
               </section>       
