@@ -27,6 +27,9 @@ class BlogPost extends Component{
 
     componentDidMount(){
 
+
+        document.body.addEventListener('wheel', this.handleScroll)
+
         let location = this.props.location;
         let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
         let switchId = this.state.list.indexOf(blogPost);
@@ -64,6 +67,30 @@ class BlogPost extends Component{
             switchIds
         })
 
+    }
+
+    componentWillUnmount(){
+
+        document.body.removeEventListener('wheel', this.handleScroll)
+
+    }
+
+    handleScroll = (event) => {
+
+        let checkToggle = this.checkScrollDirection(event)?
+        true:false;
+
+        if(checkToggle!==this.state.toggle)
+        this.setState({
+             toggle:checkToggle
+        })
+    
+    }
+
+    checkScrollDirection(event){
+       return event.wheelDelta?
+             event.wheelDelta> 0:
+             event.deltaY < 0;
     }
 
     toggleMenu = () => {

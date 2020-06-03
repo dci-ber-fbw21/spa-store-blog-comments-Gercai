@@ -4,3 +4,12 @@
     border-bottom: 0.1px solid #ddddff;
     background-color: #cceeff;
 }
+
+.blog{
+    animation: change alternate infinite 2s;
+}
+
+@keyframes change{
+    0% {fill: #eeeeeeee}
+    100% {fill: #aaaaaa;}
+}
