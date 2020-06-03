@@ -7,6 +7,8 @@
     background-color:  $brightBlue;
     top: 0;
     transition: 0.5s;
+    display: flex;
+    justify-content: center;
   
     :nth-child(3){
         transform: scaleX(-1)   

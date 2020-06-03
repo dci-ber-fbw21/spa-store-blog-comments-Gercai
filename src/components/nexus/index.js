@@ -15,10 +15,6 @@ import { reLoad } from "../../helper/routing";
 
 class Nexus extends React.Component{
 
-componentDidMount(){
-
-}
-
 GoTo(pathname){
   let {history} = this.props;
   history.push({

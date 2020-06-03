@@ -27,7 +27,6 @@ class BlogPost extends Component{
 
     componentDidMount(){
 
-
         document.body.addEventListener('wheel', this.handleScroll)
 
         let location = this.props.location;
@@ -61,7 +60,7 @@ class BlogPost extends Component{
 
         let location = this.props.location;
         let blogPost =  this.state.list.find(element => element.id === location.search.substring(1));
-   if(blogPost != this.state.blogPost)
+   if(blogPost !== this.state.blogPost)
         this.setState({
             blogPost,
             switchIds

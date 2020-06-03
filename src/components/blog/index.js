@@ -15,12 +15,9 @@ componentDidMount(){
             list: this.props.notesListData
         })
     }
-    componentDidUpdate(){
-
-    }
 
     render(){
-        let comments = "No comments yet, be first to post";
+        let noComments = "No comments yet, be first to post";
         return (
             <div>
                  <h1>Blog Overview</h1>
@@ -39,7 +36,7 @@ componentDidMount(){
                             <span>There is {element.comments.length} comment</span>
                            }
                         </p>: 
-                       <p>{comments}</p>
+                       <p>{noComments}</p>
                        }
                        </section>
                         )
