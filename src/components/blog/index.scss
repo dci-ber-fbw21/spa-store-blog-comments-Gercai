@@ -1,0 +1,15 @@
+.blogPart{
+    border: solid black 0.5px;
+    background-color: #eeffff;
+    padding: 10px;
+    border-radius: 5px;
+
+    &:hover{
+        background-color: #eeeeee; 
+    }
+    
+}
+
+section{
+    margin: 10px;
+}

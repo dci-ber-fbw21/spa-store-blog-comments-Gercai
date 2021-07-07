@@ -1,0 +1,45 @@
+@import "../../sass/color.scss";
+
+.commentField{
+    margin: 10px;
+    border: none;
+    padding: 10px;
+    
+.comment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    textarea{
+   
+        border-radius: 5px;
+        width: 70%;
+        }
+}
+
+.commentButtons{
+
+    display: flex;
+    justify-content: center;
+    button{
+        box-shadow: 0 0 5px black;
+        text-shadow: 0px 0px 5px black;
+        font-size: 1.2rem;
+        margin: 10px;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .clear{
+        border:solid 1px $brightBlue;
+        background-color: white;
+        color: $brightBlue;
+    }
+
+    .addComment{
+        background-color: $brightBlue;
+        color: white;
+    }
+}
+}
